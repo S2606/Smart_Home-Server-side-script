@@ -11,21 +11,43 @@ var config = {
     storageBucket: "smart-home-e010c.appspot.com",
     messagingSenderId: "318382701680"
 };
-firebase.initializeApp(config);
-var rootref=firebase.database().ref();
-var data={
-    L1:"",
-    L2:"",
-    L3:"",
-    L4:""
+var device={
+    angle:"",
+    name:"",
+    status:""
 };
-
+firebase.initializeApp(config);
+var rootref1=firebase.database().ref('devices').child('0');
+var rootref2=firebase.database().ref('devices').child('1');
+var rootref3=firebase.database().ref('devices').child('2');
+var rootref4=firebase.database().ref('devices').child('3');
+var l1,l2,l3,l4,count=0;
 app.get('/api',function (req, res) {
-   rootref.on('value', function (snapshot) {
-      var data=snapshot.val();
-      var ans=data.L1+data.L2+data.L3+data.L4;
-       res.json({data:ans});
-   });
+    rootref1.on('value', function (snapshot) {
+        var data = snapshot.val();
+        l1 = data.status;
+        count++;
+    });
+    rootref2.on('value', function (snapshot) {
+        var data = snapshot.val();
+        l2 = data.status;
+        count++;
+    });
+    rootref3.on('value', function (snapshot) {
+        var data = snapshot.val();
+        l3 = data.status;
+        count++;
+    });
+    rootref4.on('value', function (snapshot) {
+        var data = snapshot.val();
+        l4 = data.status;
+        count++;
+    });
+    if (count > 0) {
+        var ans = l1+l2+l3+l4;
+        res.json({data: ans});
+   }
+
 });
 
 var server = app.listen(process.env.PORT || 8000, function(){
