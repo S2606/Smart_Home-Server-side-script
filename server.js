@@ -5,11 +5,11 @@ var express=require('express');
 var app=express();
 var firebase = require('firebase');
 var config = {
-    apiKey: "AIzaSyBQzmefG5ff7jibUIlEcoAHUcA-YyXTJPQ",
-    authDomain: "smart-home-e010c.firebaseapp.com",
-    databaseURL: "https://smart-home-e010c.firebaseio.com",
-    storageBucket: "smart-home-e010c.appspot.com",
-    messagingSenderId: "318382701680"
+    apiKey: <YOUR API KEY>,
+    authDomain: <YOUR AUTH DOMAIN>,
+    databaseURL: <YOUR DATABASE URL>,
+    storageBucket: <YOUR STORAGE BUCKET>,
+    messagingSenderId: <YOUR ID>
 };
 var device={
     angle:"",
